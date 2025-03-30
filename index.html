@@ -1,0 +1,151 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+<script src="script.js"></script>
+<title>portfolio</title>
+</head>
+<body>
+<header class="navbar">
+    <div class="logo-container">
+        <img src="logo.png" alt="My Logo" class="logo">
+
+    </div>
+        <nav class="link-container">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href ="#about">About Me</a></li>
+                <li><a href ="#skill">skill</a></li>
+                <li><a href ="#contact">Contact</a></li>
+                <li><a href ="#project">project</a></li>
+            </ul>
+        </nav>
+</header>
+<main >
+    <section id="home" class="section-home">
+        <div class="intro">
+            <h2> Hello, I'm Mabina Thapa </h2>
+            <p>CSIT student<br> Web Developer
+            </p>
+        </div>
+        <div class="profile">
+            <img src="./IMG-20241216-WA0081.jpg">
+        </div>
+    </section >
+    <div class="info-container">
+        <div id="about" class="section-about">
+            <h3>About Me</h3>
+            <P>My name is Mabina Thapa . Currently i live in kathmandu but my permanent address is palpa.<br>
+                I am a student of CSIT (computer science and information technology) currently 5th 
+                semester at st.lawrence college chabahil. Well taking about my hobbies, i love to reading books.
+            </P>
+        </div>
+        <div id="skill" class="section-skill">
+            <h3>Skills</h3>
+            <p>Well known about c, c++,html,css and javascript<br>
+                Currently learning python . 
+            </p>
+        </div>
+        <div  id="project" class="section-project">
+            <h3>project</h3>
+            <h4>E--commerce website</h4>
+            <p>Currently, I am working on my E-commerce website . Which is about my book store 
+                and to create that i am focusing on html,css,javascript and so on. </p>
+        </div>
+    </div>
+    <section class="section-education">
+        <h3>Education</h3>
+        <table>
+            <tr>
+                <th>Level</th>
+                <th>School/College</th>
+                <th>year</th>
+                <th>Grade</th>
+            </tr>
+            <tr>
+                <td>SEE</td>
+                <td>Shree Matribhumi Secondary School</td>
+                <td>2076</td>
+                <td>3.40 GPA</td>
+            </tr>
+            <tr>
+                <td>+2</td>
+                <td>New Horizon Awaysiya Secondary School</td>
+                <td>2078</td>
+                <td>2.99 GPA</td>
+            </tr>
+            <tr>
+                <td>Bachelor</td>
+                <td>St. Lawrence College</td>
+                <td>2082</td>
+                <td>under graduation</td>
+            </tr>
+        </table>
+    </section> 
+    <section id="contact" class="section-contact">
+        <button id="contact-btn" onclick="showForm()">Contact Me</button>
+    
+        <div id="contact-form">
+            <h2>Contact Me</h2>
+            <form id="contactForm" action="process.php" method="post">
+                <label for="FirstName">First Name:</label>
+                <input type="text" id="FirstName" name="FirstName" required>
+                <p class="error" id="firstNameErr"></p>
+    
+                <label for="LastName">Last Name:</label>
+                <input type="text" id="LastName" name="LastName" required>
+                <p class="error" id="lastNameErr"></p>
+    
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <p class="error" id="emailErr"></p>
+    
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+                <p class="error" id="messageErr"></p>
+    
+                <label for="country">Country:</label>
+                <select id="country" name="country" required>
+                    <option value="">Select a Country</option>
+                    <option value="Nepal">Nepal</option>
+                    <option value="India">India</option>
+                    <option value="China">China</option>
+                    <option value="Korea">Korea</option>
+                    <option value="Canada">Canada</option>
+                    <option value="USA">USA</option>
+                    <option value="Japan">Japan</option>
+                </select>
+                <p class="error" id="countryErr"></p>
+    
+                <button type="submit">Submit</button>
+                <p id="formMessage"></p> 
+            </form>
+        </div>
+    </section>
+    
+    <script>
+        function showForm() {
+            let form = document.getElementById("contact-form");
+            let btn = document.getElementById("contact-btn");
+
+        if (form.style.display === "none" || form.style.display === "") {
+            form.style.display = "block";
+            btn.textContent = "Hide Form";
+        } else {
+            form.style.display = "none";
+            btn.textContent = "Contact Me";
+        }
+        }    
+    </script>    
+</main>
+<footer class="main-footer">
+    <div class="social-icon">
+        <a href="https://www.facebook.com/"><img src="./IMG/fb.JPG" ></a>
+        <a href="https://www.instagram.com/"><img src="./IMG/insta.JPG" ></a>
+        <a href="https://www.linkedin.com/"><img src="./IMG/link.JPG" ></a>
+    </div>
+        <p>&copy; 2025 Mabina Thapa. All rights reserved.</p>
+</footer>
+</body>
+</html>
