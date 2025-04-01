@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Online Bookstore</title>
+</head>
+<body>
+     <header class="navbar">
+        <div class="logo-container">
+            <h1 class="logo">Book Store</h1>
+        </div>
+            <nav class="link-container">
+                    <ul class="nav-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href ="#about">about</a></li>
+                        <li><a href ="#Help and support">Help and support</a></li>
+                        <li><a href ="#contact">Contact</a></li>
+                        <li><a href ="#LOGIN">LOGIN</a></li>
+                        <li><a href ="SIGNUP.html">SIGNUP</a></li>
+                        <li><a href="cart.html" id="cart-link">Cart (<span id="cart-count">0</span>)</a></li>
+                    </ul>
+            </nav>  
+    </header>
+    <main>
+        <section class ="book-section" >
+            <div class="book-container">
+                <div class="book-item">
+                    <img src="photos/101essay.jpg" alt="101 Essays">
+                    <p class="price">Price:Rs. 400</p>
+                    <button class="pointer-button" onclick="addTocart('101 Essays',400,'photos/101essay.jpg')">Add to cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="photos/atomic habits1.jpg" alt="Atomic Habits">
+                    <p class="price">Price:Rs. 600</p>
+                    <button class="pointer-button" onclick="addTocart('Atomic Habits',600,'photos/atomic habits1.jpg')">Add to cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="photos/I dont love you1.jpg" alt="I don't love you anymore">
+                    <p class="price">Rs. 300</p>
+                    <button class="pointer-button" onclick="addTocart('I dont love you anymore',300,'photos/I dont love you1.jpg')">Add to cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="photos/ijoriya1.jpg" alt="ijoriya">
+                    <p class="price">Rs. 650</p>
+                    <button class="pointer-button" onclick="addTocart('ijoriya',650,'photos/ijoriya1.jpg')">Add to cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="photos/Ikigai (Book)1.jpg" alt="Ikigai">
+                    <p class="price">Rs. 350</p>
+                    <button class="pointer-button" onclick="addTocart('Ikigai',350,'photos/Ikigai (Book)1.jpg')">Add to cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="photos/It Ends With Us - Colleen Hoover1.jpg" alt="It Ends With Us">
+                    <p class="price">Rs. 700</p>
+                    <button class="pointer-button" onclick="addTocart('It Ends With Us',700,'photos/It Ends With Us - Colleen Hoover1.jpg')">Add to cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="photos/It Starts With Us1.jpg" alt="It Starts With Us">
+                    <p class="price">Rs. 700</p>
+                    <button class="pointer-button" onclick="addTocart('It Starts With Us',700,'photos/It Starts With Us1.jpg')">Add to cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="photos/priya sufi.jpeg" alt="priya sufi">
+                    <p class="price">Rs. 400</p>
+                    <button class="pointer-button" onclick="addTocart('priya sufi',400,'photos/priya sufi.jpeg')">Add to cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="photos/psychology of money1.jpg" alt="psychology of money">
+                    <p class="price">Rs. 450</p>
+                    <button class="pointer-button" onclick="addTocart('psychology of money',450,'photos/psychology of money1.jpg')">Add to cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="photos/The Mountain Is You1.jpg" alt="The Mountain is you">
+                    <p class="price">Rs. 500</p>
+                    <button class="pointer-button" onclick="addTocart('The Mountain is you',500,'photos/The Mountain Is You1.jpg')">Add to cart</button>
+                </div>
+                <div class="book-item">
+                    <img src="photos/Ugly Love_ A Novel - Neuf1.jpg" alt="Ugly Love">
+                    <p class="price">Rs. 700</p>
+                    <button class="pointer-button" onclick="addTocart('Ugly Love',700,'photos/Ugly Love_ A Novel - Neuf1.jpg')">Add to cart</button>
+                </div>
+            </div>
+        </section>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById("cart-count").textContent = totalItems;
+});
+
+        </script>
+    </main>
+    <footer class="main-footer">
+        <p>Follow us </p>
+        <div class="social-icon">
+            <a href="https://www.facebook.com/"><img src="photos/fb.jpg" ></a>
+            <a href="https://www.instagram.com/"><img src="photos/insta.jpg" ></a>
+            <a href="https://www.linkedin.com/"><img src="photos/link.jpg" ></a>
+        </div>
+        <p>&copy; 2025 Mabina Thapa. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- cart ma item ko picture aaune pareu ani same page hunu pare
+- yesko background change garne
+ani aba hamle add to cart click garem vane item ko number increase hoss
+but item repeat nahaos cart ma ,only item quantity increase hunu pare
+and how can i delete the cart item again if i don't want that.
+
+-->

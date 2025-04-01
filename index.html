@@ -96,6 +96,10 @@
             <h4>E--commerce website</h4>
             <p>Currently, I am working on my E-commerce website . Which is about my book store 
                 and to create that i am focusing on html,css,javascript and so on. </p>
+            <a href="E-commerce/index.html" target="_blank">
+                <img src="bookshop.jpg" alt="bookshop" class="book">
+                <p class="view">view</p>
+            </a>
         </div>
     </div>
     <section class="section-education">
@@ -175,72 +179,63 @@
             });
         
             form.addEventListener("submit", function (event) {
-                event.preventDefault(); // Prevent form from submitting immediately
+                event.preventDefault(); 
                 let firstName = document.getElementById("FirstName").value.trim();
                 let lastName = document.getElementById("LastName").value.trim();
                 let email = document.getElementById("email").value.trim();
                 let message = document.getElementById("message").value.trim();
                 let country = document.getElementById("country").value;
-        
-                // Form validation checks
+
                 let isValid = true;
                 let errorMessages = [];
         
-                // Check for missing first name
                 if (firstName === "") {
                     isValid = false;
                     errorMessages.push("First name is required.");
                 }
         
-                // Check for missing last name
                 if (lastName === "") {
                     isValid = false;
                     errorMessages.push("Last name is required.");
                 }
-        
-                // Email validation (should contain @, . and a domain like gmail.com)
+    
                 const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
                 if (!email.match(emailPattern)) {
                     isValid = false;
                     errorMessages.push("Please enter a valid email address.");
                 }
         
-                // Check if message has at least 10 characters
                 if (message.length < 10) {
                     isValid = false;
                     errorMessages.push("Message must be at least 10 characters long.");
                 }
-        
-                // Check if country is selected
+    
                 if (country === "") {
                     isValid = false;
                     errorMessages.push("Please select a country.");
                 }
         
-                // If validation fails, display error messages
                 if (!isValid) {
                     formMessage.textContent = errorMessages.join(" ");
                     formMessage.style.color = "red";
-                    return; // Stop submission if there are errors
+                    return; 
                 }
         
-                // If validation passes, submit the form
                 let formData = new FormData(form);
         
                 fetch("process.php", {
                     method: "POST",
                     body: formData,
                 })
-                .then(response => response.json()) // Ensure response is JSON
+                .then(response => response.json()) 
                 .then(data => {
                     formMessage.textContent = data.message;
                     formMessage.style.color = data.status === "success" ? "green" : "red";
         
                     if (data.status === "success") {
-                        form.reset(); // Reset form fields
+                        form.reset(); 
                         setTimeout(() => { 
-                             // Clear success message after 3 sec
-                            contactForm.style.display = "none"; // Hide form
+                            contactForm.style.display = "none"; 
                         }, 2000);
                     }
                 })

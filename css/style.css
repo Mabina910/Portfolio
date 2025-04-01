@@ -117,12 +117,11 @@ section {
     padding: 20px;
     border: 2px solid black;
     border-radius: 10px;
-    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+    transition: background-color 0.3s ease;
     cursor: pointer;
 }
 .section-skill:hover {
     background-color: #8b5a2b; 
-    transform: scale(1.02);
 }
 button {
     background-color: #d2691e; 
@@ -191,6 +190,21 @@ button:hover {
 }
 .section-project:hover {
     background: #8b5a2b;
+}
+.book{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+a{
+    text-decoration: none;
+}
+.view{
+    color: #fed8b1;
+    text-decoration: none;
+    font-weight: bold;
 }
 .section-contact{
     color: #fed8b1;

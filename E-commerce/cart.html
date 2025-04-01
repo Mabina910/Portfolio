@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo-container">
+            <h1 class="logo">Book Store</h1>
+        </div>
+        <nav class="link-container">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html" id="cart-link">Cart (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Your Cart</h2>
+        <div id="cart-container"></div>
+        <button id="clear-cart">Clear Cart</button>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById("cart-count").textContent = totalItems;
+});
+
+        </script>
+    </main>
+
+    <script src="cart.js"></script>
+</body>
+</html>
