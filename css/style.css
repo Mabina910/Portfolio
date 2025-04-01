@@ -409,22 +409,22 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #218838;
 }
-
-.error {
-    color: red;
-    font-size: 14px;
-    height: 15px;
-}
-
-#formMessage {
-    margin-top: 15px;
-    font-weight: bold;
-}
-
 #contact-btn:hover {
     background: #fed8b1;
     color: #6f4e37;
 }
+.error {
+    color: red;
+    font-size: 12px;
+    margin: 5px 0;
+}
+
+#formMessage {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
 .main-footer {
    margin-top: 3px;
     width: 100vw; 

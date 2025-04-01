@@ -3,8 +3,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/style.css">
-<script src="script.js"></script>
 <title>portfolio</title>
+<script src="script.js"></script>
 </head>
 <body>
 <header class="navbar">
@@ -169,18 +169,120 @@
     </section>
     
     <script>
-        function showForm() {
-            let form = document.getElementById("contact-form");
-            let btn = document.getElementById("contact-btn");
-
-        if (form.style.display === "none" || form.style.display === "") {
-            form.style.display = "block";
-            btn.textContent = "Hide Form";
-        } else {
-            form.style.display = "none";
-            btn.textContent = "Contact Me";
-        }
-        }    
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("JavaScript Loaded"); // Debugging Log
+        
+            let contactBtn = document.getElementById("contact-btn");
+            let contactForm = document.getElementById("contact-form");
+        
+            if (!contactBtn || !contactForm) {
+                console.error("Contact button or form not found!");
+                return;
+            }
+        
+            // Initially hide the form
+            contactForm.style.display = "none";
+        
+            // Toggle form visibility when the button is clicked
+            contactBtn.addEventListener("click", function () {
+                console.log("Button Clicked!"); // Debugging Log
+                if (contactForm.style.display === "none" || contactForm.style.display === "") {
+                    contactForm.style.display = "block";
+                    contactBtn.textContent = "Hide Form"; // Change button text
+                } else {
+                    contactForm.style.display = "none";
+                    contactBtn.textContent = "Contact Me"; // Restore button text
+                }
+            });
+        
+            // Handle form submission
+            document.getElementById("contactForm").addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent default form submission
+        
+                let form = document.getElementById("contactForm");
+                let formMessage = document.getElementById("formMessage");
+        
+                let firstName = document.getElementById("FirstName").value.trim();
+                let lastName = document.getElementById("LastName").value.trim();
+                let email = document.getElementById("email").value.trim();
+                let message = document.getElementById("message").value.trim();
+                let country = document.getElementById("country").value;
+        
+                let firstNameErr = document.getElementById("firstNameErr");
+                let lastNameErr = document.getElementById("lastNameErr");
+                let emailErr = document.getElementById("emailErr");
+                let messageErr = document.getElementById("messageErr");
+                let countryErr = document.getElementById("countryErr");
+        
+                // Reset previous errors
+                firstNameErr.textContent = "";
+                lastNameErr.textContent = "";
+                emailErr.textContent = "";
+                messageErr.textContent = "";
+                countryErr.textContent = "";
+                formMessage.textContent = "";
+        
+                let isValid = true;
+        
+                // Validation
+                if (firstName === "") {
+                    firstNameErr.textContent = "First name is required.";
+                    isValid = false;
+                }
+        
+                if (lastName === "") {
+                    lastNameErr.textContent = "Last name is required.";
+                    isValid = false;
+                }
+        
+                let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email)) {
+                    emailErr.textContent = "Enter a valid email.";
+                    isValid = false;
+                }
+        
+                if (message.length < 10) {
+                    messageErr.textContent = "Message must be at least 10 characters long.";
+                    isValid = false;
+                }
+        
+                if (country === "") {
+                    countryErr.textContent = "Please select a country.";
+                    isValid = false;
+                }
+        
+                if (!isValid) return;
+        
+                let formData = new FormData(form);
+        
+                fetch("process.php", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then(response => response.text()) // Get raw response text
+                .then(data => {
+                    console.log("Response from PHP:", data); // Debugging log
+        
+                    if (data.trim() === "success") {
+                        formMessage.textContent = "Your message has been sent successfully!";
+                        formMessage.style.color = "green";
+                        form.reset(); // Reset form after successful submission
+                        setTimeout(() => {
+                            contactForm.style.display = "none"; // Hide form after success
+                            contactBtn.textContent = "Contact Me";
+                        }, 3000); // Hide after 3 seconds
+                    } else {
+                        formMessage.textContent = "Failed to send message: " + data;
+                        formMessage.style.color = "red";
+                    }
+                })
+                .catch(error => {
+                    console.error("Fetch Error:", error);
+                    formMessage.textContent = "An error occurred. Please try again.";
+                    formMessage.style.color = "red";
+                });
+            });
+        });        
     </script>
     <button id="back-to-top" onclick="scrollToTop()">Back to Top</button>
     <script>

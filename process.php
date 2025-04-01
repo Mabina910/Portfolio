@@ -1,56 +1,65 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php'; // Ensure PHPMailer is installed via Composer
+
+// Enable error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+file_put_contents("mail_error_log.txt", "Processing form submission...\n", FILE_APPEND);
 
-include 'dp.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $response = ["success" => false, "errors" => []];
+    // Sanitize input data
+    $firstName = htmlspecialchars(trim($_POST["FirstName"]));
+    $lastName = htmlspecialchars(trim($_POST["LastName"]));
+    $email = htmlspecialchars(trim($_POST["email"]));
+    $message = htmlspecialchars(trim($_POST["message"]));
+    $country = htmlspecialchars(trim($_POST["country"]));
 
-    $firstName = isset($_POST["FirstName"]) ? trim($_POST["FirstName"]) : "";
-    $lastName = isset($_POST["LastName"]) ? trim($_POST["LastName"]) : "";
-    $email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
-    $message = isset($_POST["message"]) ? trim($_POST["message"]) : "";
-    $country = isset($_POST["country"]) ? $_POST["country"] : "";
-
-    if (empty($firstName) || !preg_match("/^[a-zA-Z ]+$/", $firstName)) {
-        $response["errors"]["firstNameErr"] = "Invalid first name.";
+    // Basic validation
+    if (empty($firstName) || empty($lastName) || empty($email) || empty($message) || empty($country)) {
+        echo "error: Missing fields";
+        exit;
     }
 
-    if (empty($lastName) || !preg_match("/^[a-zA-Z ]+$/", $lastName)) {
-        $response["errors"]["lastNameErr"] = "Invalid last name.";
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "error: Invalid email format";
+        exit;
     }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL) || !preg_match("/@gmail\.com$/", $email)) {
-        $response["errors"]["emailErr"] = "Invalid email (must be @gmail.com).";
-    }
+    // Setup PHPMailer
+    $mail = new PHPMailer(true);
+    try {
+        $mail->isSMTP();
+        $mail->SMTPDebug = 4; // Change to 4 for full debugging
+        $mail->Debugoutput = 'error_log';
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = "alwayslateno1@gmail.com"; // Change to your email
+        $mail->Password = " iawj ttul mumb eavc"; // Use an App Password, not your actual password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
 
-    if (!empty($message) && strlen($message) < 10) {
-        $response["errors"]["messageErr"] = "Message must be at least 10 characters.";
-    }
+        // Sender & Recipient
+        $mail->setFrom("alwayslateno1@gmail.com", "Mabina Thapa");
+        $mail->addAddress("alwayslateno1@gmail.com", "Mabina Thapa"); // Change to your email to receive messages
 
+        // Email Content
+        $mail->Subject = "New Contact Form Submission";
+        $mail->Body = "Name: $firstName $lastName\nEmail: $email\nCountry: $country\n\nMessage:\n$message";
 
-    if (empty($country)) {
-        $response["errors"]["countryErr"] = "Please select a country.";
-    }
-
-    if (empty($response["errors"])) {
-        $stmt = $conn->prepare("INSERT INTO contacts (first_name, last_name, email, message, country) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $firstName, $lastName, $email, $message, $country);
-
-        if ($stmt->execute()) {
-            $response["success"] = true;
-            $response["message"] = "Form submitted successfully!";
+        // Send email
+        if ($mail->send()) {
+            echo "success";
         } else {
-            $response["errors"]["dbErr"] = "Error saving data to database.";
+            echo "error: Failed to send email";
         }
-
-        $stmt->close();
+    } catch (Exception $e) {
+        // Log error details for debugging
+        file_put_contents("mail_error_log.txt", $mail->ErrorInfo, FILE_APPEND);
+        echo "error: " . $mail->ErrorInfo;
     }
-    echo "<pre>";
-    print_r($_POST); 
-    echo "</pre>";
-    echo json_encode($response);
-    exit();
 }
 ?>
