@@ -128,26 +128,22 @@
         </table>
     </section> 
     <section id="contact" class="section-contact">
-        <button id="contact-btn" onclick="showForm()">Contact Me</button>
+        <button id="contact-btn">Contact Me</button>
     
-        <div id="contact-form">
+        <div id="contact-form" style="display: none;">
             <h2>Contact Me</h2>
-            <form id="contactForm" action="process.php" method="post">
+            <form id="contactForm">
                 <label for="FirstName">First Name:</label>
                 <input type="text" id="FirstName" name="FirstName" required>
-                <p class="error" id="firstNameErr"></p>
     
                 <label for="LastName">Last Name:</label>
                 <input type="text" id="LastName" name="LastName" required>
-                <p class="error" id="lastNameErr"></p>
     
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
-                <p class="error" id="emailErr"></p>
     
                 <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4"></textarea>
-                <p class="error" id="messageErr"></p>
+                <textarea id="message" name="message" rows="4" required></textarea>
     
                 <label for="country">Country:</label>
                 <select id="country" name="country" required>
@@ -160,130 +156,102 @@
                     <option value="USA">USA</option>
                     <option value="Japan">Japan</option>
                 </select>
-                <p class="error" id="countryErr"></p>
     
                 <button type="submit">Submit</button>
-                <p id="formMessage"></p> 
+                <p id="formMessage"></p>
             </form>
         </div>
     </section>
     
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            console.log("JavaScript Loaded"); // Debugging Log
-        
             let contactBtn = document.getElementById("contact-btn");
             let contactForm = document.getElementById("contact-form");
+            let form = document.getElementById("contactForm");
+            let formMessage = document.getElementById("formMessage");
         
-            if (!contactBtn || !contactForm) {
-                console.error("Contact button or form not found!");
-                return;
-            }
-        
-            // Initially hide the form
-            contactForm.style.display = "none";
-        
-            // Toggle form visibility when the button is clicked
             contactBtn.addEventListener("click", function () {
-                console.log("Button Clicked!"); // Debugging Log
-                if (contactForm.style.display === "none" || contactForm.style.display === "") {
-                    contactForm.style.display = "block";
-                    contactBtn.textContent = "Hide Form"; // Change button text
-                } else {
-                    contactForm.style.display = "none";
-                    contactBtn.textContent = "Contact Me"; // Restore button text
-                }
+                contactForm.style.display = (contactForm.style.display === "none" || contactForm.style.display === "") ? "block" : "none";
             });
         
-            // Handle form submission
-            document.getElementById("contactForm").addEventListener("submit", function (event) {
-                event.preventDefault(); // Prevent default form submission
-        
-                let form = document.getElementById("contactForm");
-                let formMessage = document.getElementById("formMessage");
-        
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent form from submitting immediately
                 let firstName = document.getElementById("FirstName").value.trim();
                 let lastName = document.getElementById("LastName").value.trim();
                 let email = document.getElementById("email").value.trim();
                 let message = document.getElementById("message").value.trim();
                 let country = document.getElementById("country").value;
         
-                let firstNameErr = document.getElementById("firstNameErr");
-                let lastNameErr = document.getElementById("lastNameErr");
-                let emailErr = document.getElementById("emailErr");
-                let messageErr = document.getElementById("messageErr");
-                let countryErr = document.getElementById("countryErr");
-        
-                // Reset previous errors
-                firstNameErr.textContent = "";
-                lastNameErr.textContent = "";
-                emailErr.textContent = "";
-                messageErr.textContent = "";
-                countryErr.textContent = "";
-                formMessage.textContent = "";
-        
+                // Form validation checks
                 let isValid = true;
+                let errorMessages = [];
         
-                // Validation
+                // Check for missing first name
                 if (firstName === "") {
-                    firstNameErr.textContent = "First name is required.";
                     isValid = false;
+                    errorMessages.push("First name is required.");
                 }
         
+                // Check for missing last name
                 if (lastName === "") {
-                    lastNameErr.textContent = "Last name is required.";
                     isValid = false;
+                    errorMessages.push("Last name is required.");
                 }
         
-                let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailPattern.test(email)) {
-                    emailErr.textContent = "Enter a valid email.";
+                // Email validation (should contain @, . and a domain like gmail.com)
+                const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+                if (!email.match(emailPattern)) {
                     isValid = false;
+                    errorMessages.push("Please enter a valid email address.");
                 }
         
+                // Check if message has at least 10 characters
                 if (message.length < 10) {
-                    messageErr.textContent = "Message must be at least 10 characters long.";
                     isValid = false;
+                    errorMessages.push("Message must be at least 10 characters long.");
                 }
         
+                // Check if country is selected
                 if (country === "") {
-                    countryErr.textContent = "Please select a country.";
                     isValid = false;
+                    errorMessages.push("Please select a country.");
                 }
         
-                if (!isValid) return;
+                // If validation fails, display error messages
+                if (!isValid) {
+                    formMessage.textContent = errorMessages.join(" ");
+                    formMessage.style.color = "red";
+                    return; // Stop submission if there are errors
+                }
         
+                // If validation passes, submit the form
                 let formData = new FormData(form);
         
                 fetch("process.php", {
                     method: "POST",
                     body: formData,
                 })
-                .then(response => response.text()) // Get raw response text
+                .then(response => response.json()) // Ensure response is JSON
                 .then(data => {
-                    console.log("Response from PHP:", data); // Debugging log
+                    formMessage.textContent = data.message;
+                    formMessage.style.color = data.status === "success" ? "green" : "red";
         
-                    if (data.trim() === "success") {
-                        formMessage.textContent = "Your message has been sent successfully!";
-                        formMessage.style.color = "green";
-                        form.reset(); // Reset form after successful submission
-                        setTimeout(() => {
-                            contactForm.style.display = "none"; // Hide form after success
-                            contactBtn.textContent = "Contact Me";
-                        }, 3000); // Hide after 3 seconds
-                    } else {
-                        formMessage.textContent = "Failed to send message: " + data;
-                        formMessage.style.color = "red";
+                    if (data.status === "success") {
+                        form.reset(); // Reset form fields
+                        setTimeout(() => { 
+                             // Clear success message after 3 sec
+                            contactForm.style.display = "none"; // Hide form
+                        }, 2000);
                     }
                 })
                 .catch(error => {
-                    console.error("Fetch Error:", error);
+                    console.error("Error:", error);
                     formMessage.textContent = "An error occurred. Please try again.";
                     formMessage.style.color = "red";
                 });
             });
         });        
-    </script>
+    </script>    
     <button id="back-to-top" onclick="scrollToTop()">Back to Top</button>
     <script>
         function scrollToTop() {
