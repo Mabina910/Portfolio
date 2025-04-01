@@ -43,10 +43,54 @@
         </div>
         <div id="skill" class="section-skill">
             <h3>Skills</h3>
-            <p>Well known about c, c++,html,css and javascript<br>
-                Currently learning python . 
+            <p>Well known about C, C++, HTML, CSS, and JavaScript<br>
+                Currently learning Python.
             </p>
+            <button id="toggle-btn" onclick="toggleSkills()">More</button>
+        
+            <div id="detail" style="display: none;">
+                <div id="skill-images">
+                    <div class="skill">
+                        <img src="c.png" alt="C">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <img src="c++.png" alt="C++">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <img src="htmlcss.png" alt="HTML & CSS">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <img src="python.jpg" alt="Python">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 30%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <script>
+            function toggleSkills() {
+                let detailSection = document.getElementById("detail");
+                let btn = document.getElementById("toggle-btn");
+        
+                if (detailSection.style.display === "none" || detailSection.style.display === "") {
+                    detailSection.style.display = "block";
+                    btn.textContent = "Hide Skills";
+                } else {
+                    detailSection.style.display = "none";
+                    btn.textContent = "More";
+                }
+            }
+        </script>
         <div  id="project" class="section-project">
             <h3>project</h3>
             <h4>E--commerce website</h4>
@@ -137,7 +181,13 @@
             btn.textContent = "Contact Me";
         }
         }    
-    </script>    
+    </script>
+    <button id="back-to-top" onclick="scrollToTop()">Back to Top</button>
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
 </main>
 <footer class="main-footer">
     <div class="social-icon">
