@@ -552,7 +552,7 @@ button[type="submit"]:hover {
         width: 120px;
         height: auto;
         border-radius: 50%;
-        margin-top: 15px;
+        margin-top: 0 auto 15px auto;
         display: block;
     }
 
@@ -565,8 +565,16 @@ button[type="submit"]:hover {
     table {
         width: 100%;
         font-size: 12px;
+        border-collapse: collapse;
+        margin: 10px 0;
     }
-
+    table td{
+        padding: 8px;
+        text-align: left;
+        word-wrap: break-word;
+        max-width: 200px;
+        border-bottom: 1px solid #ccc;
+    }
     input, textarea, select {
         width: 100%;
         margin-bottom: 10px;
