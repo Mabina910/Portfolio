@@ -521,6 +521,9 @@ button[type="submit"]:hover {
         gap: 10px;
         margin: 0;
         padding: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
     }
 
     .nav-links li {
