@@ -14,16 +14,27 @@
             <nav class="link-container">
                     <ul class="nav-links">
                         <li><a href="#home">Home</a></li>
-                        <li><a href ="#about">about</a></li>
+                        <li><a href ="#about">About</a></li>
                         <li><a href ="#Help and support">Help and support</a></li>
                         <li><a href ="#contact">Contact</a></li>
-                        <li><a href ="#LOGIN">LOGIN</a></li>
-                        <li><a href ="SIGNUP.html">SIGNUP</a></li>
-                        <li><a href="cart.html" id="cart-link">Cart (<span id="cart-count">0</span>)</a></li>
+                        <li><a href ="#LOGIN">LOGIN/SIGNUP</a></li>
+                        <li>
+                            <a href="cart.html" id="cart-link" class="cart-link">
+                                <img src="photos/cart.jpg" alt="Cart" class="cart-icon">
+                                <span id="cart-count" class="cart-count" style="display: none;"></span>
+                            </a>
+                        </li>
+                        
                     </ul>
             </nav>  
     </header>
     <main>
+        <section id="home" class="section-home">
+            <div class="intro">
+                <h2> Jeevanpana </h2>
+                <p>A place to lose yourself in words and find yourself again</p>
+            </div>
+        </section >
         <section class ="book-section" >
             <div class="book-container">
                 <div class="book-item">
@@ -83,14 +94,17 @@
                 </div>
             </div>
         </section>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById("cart-count").textContent = totalItems;
-});
+        <div id="message" class="message"></div>
 
-        </script>
+        <!-- Cart Side Panel -->
+        <div id="cart-panel" class="cart-panel">
+            <div class="cart-header">
+                <h3>Your Cart</h3>
+                <button id="close-cart">X</button>
+            </div>
+            <div id="cart-container"></div>
+            <button id="clear-cart">Clear Cart</button>
+        </div>
     </main>
     <footer class="main-footer">
         <p>Follow us </p>
@@ -101,7 +115,7 @@
         </div>
         <p>&copy; 2025 Mabina Thapa. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
+    <script src="cart.js"></script>
 </body>
 </html>
 <!-- cart ma item ko picture aaune pareu ani same page hunu pare

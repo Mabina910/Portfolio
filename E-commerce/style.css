@@ -10,8 +10,9 @@ body{
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background-color: black;
+    background-color: #AA336A;
 }
+
 .logo{
     font-size: 20px;
     font-weight: bold;
@@ -37,11 +38,10 @@ body{
      text-align: center;
      text-decoration: none;
      padding: 10px 20px;
-     color: #fed8b1;
+     color: white;
 }
 .nav-links li a:hover{
-    background-color: #fed8b1;
-    color: #6f4e37;
+    background-color: #fc6c85;
     border-radius: 5px;
 }
 
@@ -66,6 +66,41 @@ li a{
     padding: 30px;
     text-decoration: none;
 }
+.section-home {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4eee1; /* soft beige background */
+    color: #4a3f35; /* warm deep brown text */
+    text-align: center;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.section-home .intro {
+    background-color: #ffffffd9; /* soft white with transparency */
+    padding: 2rem 3rem;
+    
+    border-radius: 16px;
+    max-width: 700px;
+    box-shadow: 0 8px 20px rgba(74, 63, 53, 0.15); /* light brown shadow */
+}
+
+.section-home .intro h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-family: 'Georgia', serif;
+    color: black; /* medium warm brown */
+}
+
+.section-home .intro p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    font-style: italic;
+    color: black; /* slightly darker text for contrast */
+}
+
 .book-section {
     display: flex;
     justify-content: space-between;
@@ -89,8 +124,6 @@ li a{
     align-items: center;
     text-align: center;
     padding: 50px;
-    border: 2px solid brown;
-    border-radius: 10px;
     background-color: white;
    
 }
@@ -98,51 +131,15 @@ li a{
 .book-item img {
     display: flex;
     height: auto;
-    border-radius: 10px;
     justify-content: space-between;
 }
 
 .price {
     font-size: 18px;
     font-weight: bold;
-    color: #6f4e37;
+    color: #fc6c85;
     margin-top: 10px;
 }
-/*  
-section {
-    display: flex;
-    justify-content: center; 
-    padding: 20px;
-    background-color: #f8f8f8;
-}
-
-div {
-    display: flex;
-    gap: 100px; 
-}
-.img-box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-    border: 2px solid brown;
-    min-height: 25cm;
-    
-}
-img {
-    width: 200px; 
-    height: auto; 
-    border-radius: 10px; 
-}
-button {
-    font-size: 14px;
-    background-color: white;
-    color: black;
-    border: 1px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-}
-    */
 
 .pointer-button{
     cursor: pointer;
@@ -172,13 +169,89 @@ button {
     border-radius: 5px;
 }
 
-    
+.cart-link {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-icon {
+    width: 30px;
+    height: auto;
+    display: block;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: bold;
+    line-height: 1;
+    min-width: 18px;
+    text-align: center;
+}
+/* Message Box */
+.message {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+    z-index: 1000;
+}
+
+/* Cart Side Panel */
+.cart-panel {
+    position: fixed;
+    top: 0;
+    right: -30%;
+    width: 30%;
+    height: 70%;
+    background-color: #ffe6e6;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease;
+    padding: 20px;
+    z-index: 1000;
+    overflow-y: auto;
+}
+.cart-panel.open {
+    right: 0;
+}
+#close-cart {
+    background: crimson;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart-header h3 {
+    margin: 0;
+}
+.cart-header button {
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
 .main-footer {
     margin-top: 3px;
      width: 100%; 
      text-align: center; 
      padding: 5px 0; 
-     background-color: #f6f6f0;
+     background-color: #ffd1dc;
      color: black;
  }
  .social-icon{
