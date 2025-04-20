@@ -1,127 +1,116 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Online Bookstore</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BookNest | Home</title>
+  <link rel="stylesheet" href="assets/styles/style.css" />
 </head>
 <body>
-     <header class="navbar">
-        <div class="logo-container">
-            <h1 class="logo">Book Store</h1>
-        </div>
-            <nav class="link-container">
-                    <ul class="nav-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href ="#about">About</a></li>
-                        <li><a href ="#Help and support">Help and support</a></li>
-                        <li><a href ="#contact">Contact</a></li>
-                        <li><a href ="#LOGIN">LOGIN/SIGNUP</a></li>
-                        <li>
-                            <a href="cart.html" id="cart-link" class="cart-link">
-                                <img src="photos/cart.jpg" alt="Cart" class="cart-icon">
-                                <span id="cart-count" class="cart-count" style="display: none;"></span>
-                            </a>
-                        </li>
-                        
-                    </ul>
-            </nav>  
-    </header>
-    <main>
-        <section id="home" class="section-home">
-            <div class="intro">
-                <h2> Jeevanpana </h2>
-                <p>A place to lose yourself in words and find yourself again</p>
-            </div>
-        </section >
-        <section class ="book-section" >
-            <div class="book-container">
-                <div class="book-item">
-                    <img src="photos/101essay.jpg" alt="101 Essays">
-                    <p class="price">Price:Rs. 400</p>
-                    <button class="pointer-button" onclick="addTocart('101 Essays',400,'photos/101essay.jpg')">Add to cart</button>
-                </div>
-                <div class="book-item">
-                    <img src="photos/atomic habits1.jpg" alt="Atomic Habits">
-                    <p class="price">Price:Rs. 600</p>
-                    <button class="pointer-button" onclick="addTocart('Atomic Habits',600,'photos/atomic habits1.jpg')">Add to cart</button>
-                </div>
-                <div class="book-item">
-                    <img src="photos/I dont love you1.jpg" alt="I don't love you anymore">
-                    <p class="price">Rs. 300</p>
-                    <button class="pointer-button" onclick="addTocart('I dont love you anymore',300,'photos/I dont love you1.jpg')">Add to cart</button>
-                </div>
-                <div class="book-item">
-                    <img src="photos/ijoriya1.jpg" alt="ijoriya">
-                    <p class="price">Rs. 650</p>
-                    <button class="pointer-button" onclick="addTocart('ijoriya',650,'photos/ijoriya1.jpg')">Add to cart</button>
-                </div>
-                <div class="book-item">
-                    <img src="photos/Ikigai (Book)1.jpg" alt="Ikigai">
-                    <p class="price">Rs. 350</p>
-                    <button class="pointer-button" onclick="addTocart('Ikigai',350,'photos/Ikigai (Book)1.jpg')">Add to cart</button>
-                </div>
-                <div class="book-item">
-                    <img src="photos/It Ends With Us - Colleen Hoover1.jpg" alt="It Ends With Us">
-                    <p class="price">Rs. 700</p>
-                    <button class="pointer-button" onclick="addTocart('It Ends With Us',700,'photos/It Ends With Us - Colleen Hoover1.jpg')">Add to cart</button>
-                </div>
-                <div class="book-item">
-                    <img src="photos/It Starts With Us1.jpg" alt="It Starts With Us">
-                    <p class="price">Rs. 700</p>
-                    <button class="pointer-button" onclick="addTocart('It Starts With Us',700,'photos/It Starts With Us1.jpg')">Add to cart</button>
-                </div>
-                <div class="book-item">
-                    <img src="photos/priya sufi.jpeg" alt="priya sufi">
-                    <p class="price">Rs. 400</p>
-                    <button class="pointer-button" onclick="addTocart('priya sufi',400,'photos/priya sufi.jpeg')">Add to cart</button>
-                </div>
-                <div class="book-item">
-                    <img src="photos/psychology of money1.jpg" alt="psychology of money">
-                    <p class="price">Rs. 450</p>
-                    <button class="pointer-button" onclick="addTocart('psychology of money',450,'photos/psychology of money1.jpg')">Add to cart</button>
-                </div>
-                <div class="book-item">
-                    <img src="photos/The Mountain Is You1.jpg" alt="The Mountain is you">
-                    <p class="price">Rs. 500</p>
-                    <button class="pointer-button" onclick="addTocart('The Mountain is you',500,'photos/The Mountain Is You1.jpg')">Add to cart</button>
-                </div>
-                <div class="book-item">
-                    <img src="photos/Ugly Love_ A Novel - Neuf1.jpg" alt="Ugly Love">
-                    <p class="price">Rs. 700</p>
-                    <button class="pointer-button" onclick="addTocart('Ugly Love',700,'photos/Ugly Love_ A Novel - Neuf1.jpg')">Add to cart</button>
-                </div>
-            </div>
-        </section>
-        <div id="message" class="message"></div>
+  <header class="main-header">
+    <div class="top-bar">
+      <h3>Welcome to BookNest !!!</h3>
+      <div class="login-container">
+        <a href="login.html" class="login-link">
+          <div class="login">
+            <img src="assets/images/login.png" alt="Login Icon">
+          </div>
+          Login/Signup
+        </a>
+      </div>
+    </div>
+    
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="books.html">Books</a>
+      <a href ="#Service">Services</a>
+      <a href ="#Blog">BLOG</a>
+      <a href ="#about">About Us</a>
+      <a href="cart.html"><img src="assets/images/cart.png"></a>
+    </nav>
 
-        <!-- Cart Side Panel -->
-        <div id="cart-panel" class="cart-panel">
-            <div class="cart-header">
-                <h3>Your Cart</h3>
-                <button id="close-cart">X</button>
-            </div>
-            <div id="cart-container"></div>
-            <button id="clear-cart">Clear Cart</button>
-        </div>
-    </main>
+  </header>
+  
+  <main>
+    <section class="banner">
+      <p>Your cozy corner for all kinds of books</p><br><br>
+      <h4>Shop by category :</h4>
+    </section>
+  
+    <section class="categories">
+      <div class="category-item">
+        <img src="assets/images/romantic book icon.png" alt="Romantic Books">
+        <p>Love Story Books</p>
+        <a href="products.html" class="btn">Shop now ></a>
+      </div>
+      <div class="category-item">
+        <img src="assets/images/motivational book icon.jpg" alt="Motivational Books">
+        <p>Motivational Books</p>
+        <a href="products.html" class="btn">Shop now ></a>
+      </div>
+      <div class="category-item">
+        <img src="assets/images/fictional bok icon.jpg" alt="Fictional Books">
+        <p>Fictional Books</p>
+        <a href="products.html" class="btn">Shop now ></a>
+      </div>
+      <div class="category-item">
+        <img src="assets/images/non fictional icon.png" alt="Non-Fictional Books">
+        <p>Non-Fictional Books</p>
+        <a href="products.html" class="btn">Shop now ></a>
+      </div>
+      <div class="category-item">
+        <img src="assets/images/selflove book icon.jpg" alt="Self Help Books">
+        <p>Self Help Books</p>
+        <a href="products.html" class="btn">Shop now ></a>
+      </div>
+      <div class="category-item">
+        <img src="assets/images/mostloved book icon.png" alt="Most Loved Books">
+        <p>Most Loved Books</p>
+        <a href="products.html" class="btn">Shop now ></a>
+      </div>
+      <div class="category-item">
+        <img src="assets/images/newarrival book icon.png" alt="New Arrivals">
+        <p>New Arrivals</p>
+        <a href="products.html" class="btn">Shop now ></a>
+      </div>
+      <div class="category-item">
+        <img src="assets/images/affers icon.png" alt="Offers">
+        <p>Offers</p>
+        <a href="products.html" class="btn">Shop now ></a>
+      </div>
+    </section>
+  </main>
+  
+  <script src="js/main.js"></script>
     <footer class="main-footer">
-        <p>Follow us </p>
-        <div class="social-icon">
-            <a href="https://www.facebook.com/"><img src="photos/fb.jpg" ></a>
-            <a href="https://www.instagram.com/"><img src="photos/insta.jpg" ></a>
-            <a href="https://www.linkedin.com/"><img src="photos/link.jpg" ></a>
-        </div>
-        <p>&copy; 2025 Mabina Thapa. All rights reserved.</p>
-    </footer>
-    <script src="cart.js"></script>
+      <div class="footer-container">
+      <div id="about" class="section-about">
+        <h3>About US</h3>
+        <P>BookNest is your cozy online corner where stories come alive. From romantic tales to motivational reads and gripping fiction, we offer a world of books to suit every mood.
+          Whether you're looking to grow, get inspired, or simply escape from reality for a while, we’ve got the perfect read waiting for you.
+          Start your next chapter with us — your escape begins here.
+        </P>
+      </div>
+      <div id="Quick" class="section-quicklinks">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="books.html">Books</a>
+        <a href ="#Service">Services</a>
+        <a href ="#about">About Us</a>
+      </div>
+      <div id="Contact" class="section-contact us">
+        <h3>Contact US</h3>
+        <p>Address : Budhanilkhantha, kathmandu</p>
+        <p>Phone : 0454798575</p>
+        <p>Email : Booknest@gmail.com</p>
+      </div>
+      <div class="social-icon">
+        <h3>Follow us</h3>
+          <a href="https://www.facebook.com/"><img src="assets/images/fb.jpg" ></a>
+          <a href="https://www.instagram.com/"><img src="assets/images/insta.jpg" ></a>
+          <a href="https://www.linkedin.com/"><img src="assets/images/link.jpg" ></a>
+      </div>
+    </div>
+          <p>&copy; 2025 BookNest. All rights reserved.</p>
+  </footer>
 </body>
 </html>
-<!-- cart ma item ko picture aaune pareu ani same page hunu pare
-- yesko background change garne
-ani aba hamle add to cart click garem vane item ko number increase hoss
-but item repeat nahaos cart ma ,only item quantity increase hunu pare
-and how can i delete the cart item again if i don't want that.
-
--->
