@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../css/signup_1.css">
+</head>
+<body>
+    <section class="main-container">
+        <div class="logo-container">
+            <div class="logo">
+                <img src="../image/BotaniQ_font.svg" alt="Logo" id="LOGO">
+            </div>
+            <div class="slogan">
+                <p>Where Technology Meets Nature</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="signup-box">
+                <h2>Sign Up</h2>
+                <form action="../includes/signup.php" method="POST">
+                    <div class="input-group">
+                        <label>Full Name</label>
+                        <input type="text" name="full_name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Phone Number</label>
+                        <input type="tel" name="phone_number" placeholder="Enter your phone number" pattern="[0-9]{10}" title="Phone number must be exactly 10 digits" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="Enter your email" pattern="[a-zA-Z0-9._%+-]+@gmail\.com" title="Email must be in the format: example@gmail.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Gender</label>
+                        <select name="gender" required>
+                            <option value="" disabled selected>Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Date of Birth</label>
+                        <div class="dob-group">
+                            <select name="day" required>
+                                <option value="" disabled selected>Day</option>
+                                <script>
+                                    for(let i = 1; i <= 31; i++) {
+                                        document.write(`<option value="${i}">${i}</option>`);
+                                    }
+                                </script>
+                            </select>
+                            <select name="month" required>
+                                <option value="" disabled selected>Month</option>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                            <select name="year" required>
+                                <option value="" disabled selected>Year</option>
+                                <script>
+                                    let currentYear = new Date().getFullYear();
+                                    for(let i = currentYear; i >= 1900; i--) {
+                                        document.write(`<option value="${i}">${i}</option>`);
+                                    }
+                                </script>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>New Password</label>
+                        <div class="password-group">
+                            <input type="password" id="password" name="password" placeholder="Enter new password" 
+                            pattern="^(?=.*[A-Z])(?=.*[@_#])(?=.*\d)[A-Za-z\d@_#]{8,}$" 
+                            title="Password must be at least 8 characters, include one uppercase letter, one number, and one special character (@, _, #)" required>
+                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility()">Show</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="signup-btn">Sign Up</button>
+                </form>
+                <p class="login-link">Already have an account? <a href="../html/login.html">Log in Now</a></p>
+            </div>
+        </div>
+    </section>
+    <script src="../javascript/signup.js">
+       
+        </script>
+</body>
+</html>
